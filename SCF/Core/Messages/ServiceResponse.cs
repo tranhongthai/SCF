@@ -130,6 +130,11 @@ namespace Peyton.Core.Messages
 
         public ServiceMessage()
         {
+            Init();
+        }
+
+        public virtual void Init()
+        {
             TransactionID = Guid.NewGuid();
             TransactionTime = DateTime.Now;
         }

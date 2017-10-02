@@ -4,22 +4,7 @@ using Peyton.Core.Repository;
 namespace Peyton.Core
 {
 
-    public enum AccountType : int
-    {
-        Cheuque,
-        Saving,
-        Credit
-    }
-
-    public enum CardType : int
-    {
-        Visa = 0,
-        MasterCard,
-        Discover,
-        AmericanExpress,
-        DinersClub,
-        JCB
-    }
+    
 
     public enum Status : int
     {
