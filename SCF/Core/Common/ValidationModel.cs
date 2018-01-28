@@ -6,8 +6,6 @@ namespace Peyton.Core.Common
 {
     public class ValidationModel
     {
-        public bool Result { get; set; }
-        public string ResultCode { get; set; }
         public string Message { get; set; }
         public List<string> MemberNames { get; set; }
         public ValidationModel()

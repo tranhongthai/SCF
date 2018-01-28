@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Peyton.Core.Repository;
-using System.ComponentModel.DataAnnotations;
 
 namespace Peyton.Core.Security
 {
@@ -16,29 +15,22 @@ namespace Peyton.Core.Security
             LastName = string.Empty;
             MiddleName = string.Empty;
         }
-        [StringLength(10)]
+        public string HashPassword { get; set; }
         public string Title { get; set; }
-        [StringLength(64)]
         public string FirstName { get; set; }
-        [StringLength(64)]
         public string LastName { get; set; }
-        [StringLength(64)]
         public string MiddleName { get; set; }
-        [StringLength(256)]
         public string PreferredName { get; set; }
         public DateTime? DoB { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<Identity> Identities { get; set; }
         public virtual ICollection<RoleProfile> Roles { get; set; }
+        public bool Aboriginal { get; set; }
+        public bool TorresStaitIslander { get; set; }
+        public virtual ICollection<Common.System> Systems { get; set; }
+
         public string FullName
         {
             get { return StringExt.Combine(FirstName, LastName); }
-        }
-
-        public static Profile GetAnonymous()
-        {
-            var profile = new Profile();
-            profile.LastName = "Anonymous";
-            return profile;
         }
     }
 }

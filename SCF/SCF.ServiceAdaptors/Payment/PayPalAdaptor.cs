@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Text;
 using System.Threading;
 using PayPal.Payments.Common.Utility;
@@ -8,8 +7,8 @@ using PayPal.Payments.DataObjects;
 using PayPal.Payments.Transactions;
 using Peyton.Core;
 using Peyton.Core.Common;
-using Peyton.ESB.Domain.Messages;
-using Peyton.Core.Messages;
+using SCF.ServiceAdaptors.Payment.Messages;
+using Peyton.Core.Repository;
 
 namespace SCF.ServiceAdaptors.Payment
 {
@@ -139,7 +138,7 @@ namespace SCF.ServiceAdaptors.Payment
 
         public PaymentResponse Pay(PaymentRequest request)
         {
-            using (var context = new Context())
+            using (var context = new DbContext())
             {
                 var response = new PaymentResponse();
                 var adaptorLog = new ServiceLog(request);

@@ -11,8 +11,8 @@ namespace Peyton.Core.Security
         public virtual Profile Profile { get; set; }
         public virtual Role Role { get; set; }
         public virtual Group Group { get; set; }
+        public virtual UserRoleType Type { get; set; }
         public Guid? EntityId { get; set; }
         public string Note { get; set; }
-
     }
 }

@@ -3,7 +3,7 @@ using System.Web;
 
 namespace Peyton.Core.Web
 {
-    public class SessionManager
+    public class SessionModel
     {
         public static Guid ProfileId
         {
@@ -30,8 +30,6 @@ namespace Peyton.Core.Web
 
         public static void Set<T>(string key, T val)
         {
-            if(val == null)
-                val = Activator.CreateInstance<T>();
             HttpContext.Current.Session[key] = val;
         }
 
@@ -47,8 +45,6 @@ namespace Peyton.Core.Web
 
         public static bool Exist(string key)
         {
-            if (HttpContext.Current.Session == null)
-                return false;
             return HttpContext.Current.Session[key] != null;
         }
     }

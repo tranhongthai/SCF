@@ -1,26 +1,16 @@
-﻿using Peyton.Core.Messages;
-using System.Linq;
+﻿using System.Linq;
+using System.Web.Mvc;
 
-namespace System.Web.Mvc
+namespace Peyton.Core.Messages
 {
-    public class JsonResponse<T> : ServiceResponse<T>
+    public class JsonResponse<T> : GenericResponse<T>
     {
         public string Redirect { get; set; }
         public bool Refresh { get; set; }
         public bool Success { get { return !HasError; } }
-        public JsonResponse()
-        {
-            try
-            {
-                Data = (T)Activator.CreateInstance(typeof(T));
-            }
-            catch
-            {
-                Data = default(T);
-            }
-            Redirect = string.Empty;
-            Refresh = false;
-        }
+
+        public JsonResponse() { }
+
         public JsonResponse(ModelStateDictionary modelState, params string[] fields)
             : this()
         {
@@ -31,27 +21,30 @@ namespace System.Web.Mvc
                 if (!modelState.IsValidField(item))
                     AddError(modelState[item].Errors[0].ErrorMessage, item);
         }
-        public JsonResponse<T> SetData(ServiceResponse<T> response)
+
+        public JsonResponse<T> SetData(GenericResponse<T> response)
         {
             SetData(response.Errors, response.Data);
             return this;
         }
+
         public bool AddErrors(ServiceResponse data)
         {
             Errors.AddRange(data.Errors);
             return HasError;
         }
+
+        public override void Init()
+        {
+            base.Init();
+            Redirect = "";
+            Refresh = false;
+        }
     }
 
     public class JsonResponse : JsonResponse<object>
     {
-        public new string Redirect { get; set; }
-        public new bool Success { get { return !HasError; } }
-
-        public JsonResponse()
-        {
-            Data = new object();
-            Redirect = string.Empty;
-        }
+        public JsonResponse() { }
+        public JsonResponse(ModelStateDictionary modelState, params string[] fields) : base(modelState, fields) { }
     }
 }

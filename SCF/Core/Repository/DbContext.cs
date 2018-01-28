@@ -5,8 +5,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using Peyton.Core.Common;
+using Peyton.Core.Report;
 using Peyton.Core.Security;
-using Peyton.Core.Messages;
 
 namespace Peyton.Core.Repository
 {
@@ -15,20 +15,29 @@ namespace Peyton.Core.Repository
         public string LanguageId { get; set; }
         //Security
         public DbSet<Profile> Profiles { get; set; }
-        public DbSet<User> Users { get; set; }
         //Enterprise
+        public DbSet<Common.System> Systems { get; set; }
+
+        public DbSet<ImportanceLevel> ImportanceLevels { get; set; }
+        public DbSet<GroupLevel> GroupLevels { get; set; }
+        public DbSet<GroupType> GroupTypes { get; set; }
+        public DbSet<ErrorMessage> ErrorMessages { get; set; }
+        public DbSet<LogFormat> LogFormats { get; set; }
+        public DbSet<Setting> Settings { get; set; }
+        public DbSet<ResultCode> ResultCodes { get; set; }
+        public DbSet<RoleType> RoleTypes { get; set; }
+        public DbSet<UserRoleType> UserRoleTypes { get; set; }
+        public DbSet<CreditCardType> CreditCardTypes { get; set; }
+        public DbSet<Milestone> Milestones { get; set; }
+
+        public DbSet<ServiceReport> ServiceReports { get; set; }
 
         public DbSet<Log> Logs { get; set; }
-
 
     }
 
     public partial class DbContext : System.Data.Entity.DbContext, IDisposable
     {
-        public User GetCurrentUser()
-        {
-            return Load<User>(AppManager.CurrentUser.id);
-        }
         void IDisposable.Dispose()
         {
             Dispose();
@@ -49,83 +58,45 @@ namespace Peyton.Core.Repository
 
         #region Public Methods
 
-        public T Load<T>(Expression<Func<T, bool>> ex, bool includeDeleted = true) where T : Entity
+        public IQueryable<T> Get<T>(Expression<Func<T, bool>> ex) where T : Entity
         {
-            return Get<T>(includeDeleted).FirstOrDefault(ex);
+            return Set<T>().Where(ex);
         }
 
-        public T Load<T>(Guid id, bool includeDeleted = true) where T : Entity
+        public T Load<T>(Expression<Func<T, bool>> ex) where T : Entity
         {
-            return Load<T>(i => i.oid == id, includeDeleted);
+            return Set<T>().FirstOrDefault(ex);
         }
 
-        public T Load<T>(Guid id, string includePath , bool includeDeleted = false) where T : Entity
+        public T Get<T>(Guid id) where T : Entity
         {
-            return Get<T>(i=>i.oid==id,includeDeleted).Include(includePath).FirstOrDefault();
+            return Set<T>().FirstOrDefault(i => i.Id == id);
         }
 
-        public T Load<T>(string code, bool includeDeleted = true) where T : Entity
+        public T Get<T>(int id) where T : EnumEntity
         {
-            return Load<T>(i => i.Code == code);
+            return Set<T>().FirstOrDefault(i => i.Id == id);
         }
 
-        public T Load<T>(long id, bool includeDeleted = false) where T : Entity
+        public T Get<T>(string name) where T : EnumEntity
         {
-            return Load<T>(i => i.id == id, includeDeleted);
-        }
-
-        public T Load<T>(long id, string includePath, bool includeDeleted = true) where T : Entity
-        {
-            return Get<T>(i=>i.id==id, includeDeleted).Include(includePath).FirstOrDefault();
-        }
-
-
-        public IQueryable<T> Get<T>( bool includeDeleted = false) where T : Data
-        {
-                return Set<T>().Where(i => i.Status != Status.Deleted, !includeDeleted);
-        }
-        public IQueryable<T> Get<T>(Expression<Func<T, bool>> ex,  bool includeDeleted = false) where T : Data
-        {
-            return Get<T>( includeDeleted).Where(ex);
+            return Set<T>().FirstOrDefault(i => i.Name == name);
         }
 
         public bool Exist<T>(Guid id) where T : Entity
         {
-            return Set<T>().Any(i => i.oid == id);
+            return Set<T>().Any(i => i.Id == id);
         }
 
-        public void Delete<T>(T data, bool isForced = false) where T : Data
+
+        public IQueryable<T> Get<T>() where T : Entity
         {
-            if (data is Entity)
-            {
-                var entity = data as Entity;
-                entity.ModifiedBy = AppManager.CurrentUser.id;
-                entity.LastModifiedTime = DateTime.Now;
-                entity.Status = Status.Deleted;
-                if (isForced)
-                    Entry(entity).State = EntityState.Deleted;
-            }
-            else
-                Entry(data).State = EntityState.Deleted;
+            return Set<T>().AsQueryable();
         }
 
-        public void Add<T>(T data) where T : Data
+        public void Delete<T>(T entity) where T : Entity
         {
-            if (data is Entity)
-            {
-                var entity = data as Entity;
-                entity.CreatedBy = AppManager.CurrentUser.id;
-                Set<T>().Add(entity as T);
-            }
-            else
-                Set<T>().Add(data);
-        }
-
-        public void Update<T>(T entity) where T : Entity
-        {
-            entity.LastModifiedTime = DateTime.Now;
-            
-            entity.ModifiedBy = AppManager.CurrentUser.id;
+            Entry(entity).State = EntityState.Deleted;
         }
 
         public void ExecuteStoredProcedure(string name, Dictionary<string, object> paramaters)
@@ -146,30 +117,6 @@ namespace Peyton.Core.Repository
             Database.Connection.Close();
         }
 
-        public void SaveChanges(ServiceResponse response)
-        {
-            try
-            {
-                if (!response.HasError)
-                    SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                response.AddError(ex);
-            }
-        }
-
         #endregion
-    }
-
-    public static class ContextExt
-    {
-        public static T Load<T>(this IQueryable<T> query) where T: Entity
-        {
-            var data = query.FirstOrDefault();
-            if (data == null)
-                data = (T)Activator.CreateInstance(typeof(T));
-            return data;
-        }
     }
 }

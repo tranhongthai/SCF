@@ -22,37 +22,3 @@ C:\Users\Thai Tran\Google Drive\Peyton\Core\bin\Release\System.Web.WebPages.Depl
 C:\Users\Thai Tran\Google Drive\Peyton\Core\bin\Release\System.Web.WebPages.Razor.xml
 C:\Users\Thai Tran\Google Drive\Peyton\Core\obj\Release\Peyton.Core.dll
 C:\Users\Thai Tran\Google Drive\Peyton\Core\obj\Release\Peyton.Core.pdb
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\Peyton.Core.dll.config
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\Peyton.Core.dll
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\Peyton.Core.pdb
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\EntityFramework.dll
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\EntityFramework.SqlServer.dll
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\log4net.dll
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\Microsoft.Web.Infrastructure.dll
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\System.Web.Helpers.dll
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\System.Web.Mvc.dll
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\System.Web.Razor.dll
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\System.Web.WebPages.Deployment.dll
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\System.Web.WebPages.dll
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\System.Web.WebPages.Razor.dll
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\EntityFramework.xml
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\EntityFramework.SqlServer.xml
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\log4net.xml
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\System.Web.Helpers.xml
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\System.Web.Mvc.xml
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\System.Web.Razor.xml
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\System.Web.WebPages.xml
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\System.Web.WebPages.Deployment.xml
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\System.Web.WebPages.Razor.xml
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\obj\Release\Core.csprojResolveAssemblyReference.cache
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\obj\Release\Peyton.Core.dll
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\obj\Release\Peyton.Core.pdb
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\antlr.runtime.dll
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\Ical.Net.Collections.dll
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\Ical.Net.dll
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\NodaTime.dll
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\antlr.runtime.pdb
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\antlr.runtime.xml
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\Ical.Net.pdb
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\Ical.Net.xml
-C:\Users\Thai Tran\Desktop\SilentBull\trunk\Core\bin\Release\Ical.Net.Collections.pdb

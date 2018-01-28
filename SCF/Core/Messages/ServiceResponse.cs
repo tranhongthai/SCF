@@ -1,67 +1,43 @@
-﻿using Peyton.Core.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Web.Mvc;
+using Peyton.Core.Common;
+using Peyton.Core.Repository;
 
 namespace Peyton.Core.Messages
 {
-    [DataContract]
-    public class ServiceResponse<T> : ServiceResponse
-    {
-        [DataMember]
-        public T Data { get; set; }
-
-        public ServiceResponse() { }
-
-        public ServiceResponse<T> SetData(T data)
-        {
-            Data = HasError ? default(T) : data;
-            return this;
-        }
-
-        public ServiceResponse<T> SetData(T successData, T failData)
-        {
-            Data = HasError ? failData : successData;
-            return this;
-        }
-
-        public ServiceResponse<T> SetData(List<ValidationModel> errors, T data)
-        {
-            Errors.AddRange(errors);
-            SetData(data);
-            return this;
-        }
-    }
-
-    [DataContract]
-    public class ServiceResponse : ServiceMessage
+    public class ServiceResponse : ServiceMessage, IServiceResponse
     {
         #region Constructors
+        public ServiceResponse() { }
 
-        public ServiceResponse()
+        public ServiceResponse(ServiceRequest request) : this()
         {
-            Message = string.Empty;
-            Errors = new List<ValidationModel>();
+            RequestId = request.TransactionId;
+            RequestTime = request.RequestTime;
+            AddErrors(request.Validate());
         }
 
         #endregion
 
         #region Properties
-        [DataMember]
+
+        public string ServiceCode { get; set; }
+        public Guid RequestId { get; set; }
+        public DateTime RequestTime { get; set; }
+        public TimeSpan ResponseTime { get; set; }
         public List<ValidationModel> Errors { get; set; }
 
-        private string _message { get; set; }
-
+        private string _message;
         public bool HasError { get { return Errors.Any(); } }
-
         public string Message
         {
             get
             {
                 if (HasError)
-                    return string.Join("<br />", Errors.Select(i => i.Message).ToList());
+                    return Errors.Select(i => i.Message).Combine("<br />");
                 return _message;
             }
             set
@@ -69,74 +45,57 @@ namespace Peyton.Core.Messages
                 _message = value;
             }
         }
-
+        public ServiceResult Result { get; set; }
         #endregion
 
         #region Methods
         public void AddError(string message, string member)
         {
-            
+            member = StringExt.Get(member);
             if(!string.IsNullOrWhiteSpace(message))
                 Errors.Add(message, member);
         }
 
-        public void AddError(Exception ex)
-        {
-
-            Errors.Add(ex.Details(true), "");
-        }
-
-        public void AddError(string message, string member, object o)
-        {
-            if (o == null)
-                if (!string.IsNullOrWhiteSpace(message))
-                    Errors.Add(message, member);
-        }
-
-        public void AddError(string message, string member, bool o)
-        {
-            if (o == false)
-                if (!string.IsNullOrWhiteSpace(message))
-                    Errors.Add(message, member);
-        }
-
-        public void AddError(string message, string member, string s)
-        {
-            if (string.IsNullOrEmpty(s))
-                if (!string.IsNullOrWhiteSpace(message))
-                    Errors.Add(message, member);
-        }
-
-        public void AddErrors(List<ValidationModel> errors)
+        public void AddErrors(List<ValidationResult> errors)
         {
             Errors.AddRange(errors);
         }
 
         public static implicit operator JsonResult(ServiceResponse response)
         {
-            return new JsonResult() { Data = response, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            response._message = response._message.HtmlResolve();
+            return new JsonResult { Data = response, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        public override void Init()
+        {
+            base.Init();
+            _message = string.Empty;
+            Errors = new List<ValidationModel>();
+        }
+
+        public static T Factory<T, TH>(TH request, Func<DbContext, T, TH, ServiceResult> myFunc, string serviceCode = "")
+            where T : ServiceResponse
+            where TH : ServiceRequest
+        {
+            var response = (T)Activator.CreateInstance(typeof(T), request);
+            try
+            {
+                if (!response.HasError)
+                    using (var ctx = new DbContext())
+                    {
+                        response.Result = myFunc(ctx, response, request);
+                    }
+            }
+            catch (Exception ex)
+            {
+                response.AddError(ex.Message, "Unknown");
+            }
+            response.ServiceCode = serviceCode;
+            response.ResponseTime = new TimeSpan();
+            return response;
         }
 
         #endregion
-    }
-
-    [DataContract]
-    public class ServiceMessage
-    {
-        [DataMember]
-        public Guid TransactionID { get; set; }
-
-        public DateTime TransactionTime { get; set; }
-
-        public ServiceMessage()
-        {
-            Init();
-        }
-
-        public virtual void Init()
-        {
-            TransactionID = Guid.NewGuid();
-            TransactionTime = DateTime.Now;
-        }
     }
 }

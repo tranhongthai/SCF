@@ -17,10 +17,4 @@ namespace Peyton.Core.Calendar
 
         public virtual AppointmentType Type { get; set; }
     }
-
-    public enum AppointmentType
-    {
-        Normal,
-        Scheduled
-    }
 }

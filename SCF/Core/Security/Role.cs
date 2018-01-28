@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Peyton.Core.Common;
+using Peyton.Core.Enterprise;
 using Peyton.Core.Repository;
-using System.ComponentModel.DataAnnotations;
 
 namespace Peyton.Core.Security
 {
@@ -15,10 +16,10 @@ namespace Peyton.Core.Security
             PermissionLevel = 100;
         }
 
-        [StringLength(64)]
         public string Name { get; set; }
-        [StringLength(1024)]
         public string Description { get; set; }
+        public virtual Application Application { get; set; }
+        public virtual RoleType Type { get; set; }
         public int PermissionLevel { get; set; }
         public virtual ICollection<RoleProfile> UserRoles { get; set; }
     }

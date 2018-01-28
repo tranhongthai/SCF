@@ -4,7 +4,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
+using Peyton.Core;
 using Peyton.Core.Common;
+using Peyton.Core.Enterprise;
 using Peyton.Core.Repository;
 
 // ReSharper disable once CheckNamespace
@@ -13,6 +15,21 @@ namespace System
 {
     public static class StringExt
     {
+        public static Peyton.Core.Common.Version ToVersion(this string val)
+        {
+            var vals = val.Split(".");
+            var result = new Peyton.Core.Common.Version();
+            var n = vals.Count();
+            if (n > 0)
+                result.No = vals[0].ToInt();
+            if (n > 1)
+                result.Major = vals[1].ToInt();
+            if (n > 2)
+                result.Minor = vals[2].ToInt();
+            if (n > 3)
+                result.Build = vals[3].ToInt();
+            return result;
+        }
         public static string Percentage(double val)
         {
             return string.Format("{0}%", (int) (val*100));
@@ -113,31 +130,8 @@ namespace System
             return string.Join(separator, vals);
         }
 
-        public static string Combine(this IEnumerable<string> vals, string separator, string lastSeparator)
-        {
-            vals = vals.Trim();
-            var n = vals.Count();
-            if (n == 0)
-                return "";
-            
-            var data = vals.ToList();
-            if (n == 1)
-                return data[0];
-
-            var result = "";
-            for (var i = 0; i< n-2; i++)
-            {
-                result = result + data[i] + separator;
-            }
-            result = result + data[n-2] + lastSeparator + data[n-1];
-
-            return result;
-        }
-
         public static string ToSha1(this string val)
         {
-            if (val == null)
-                return string.Empty;
             val = Trim(val);
             var algorithm = SHA1.Create();
             var code = algorithm.ComputeHash(Encoding.UTF8.GetBytes(val));
@@ -147,14 +141,46 @@ namespace System
         public static string[] Split(this string val, string separator,
             StringSplitOptions option = StringSplitOptions.RemoveEmptyEntries)
         {
-            return val == null ? new string[0] : val.Split(new[] {separator}, StringSplitOptions.RemoveEmptyEntries);
+            if (val == null)
+                return new string[0];
+            else
+            {
+                var s = val.Split(new[] { separator }, StringSplitOptions.RemoveEmptyEntries);
+                var n = s.Count();
+                for (var i = 0; i < n; i++)
+                {
+                    s[i] = s[i].Trim();
+                }
+                return s;
+            }
+
         }
+
+        public static bool ToBoolean(this string val)
+        {
+            if (val == null)
+                return false;
+            if (val.ToUpper() == "TRUE")
+                return true;
+            if (val == "1")
+                return true;
+            return false;
+        }
+
+
 
 
         public static bool IsEmail(this string s)
         {
-            var regex = new Regex(Email.EmailRegex);
-            return regex.IsMatch(s);
+            using (var context = new DbContext())
+            {
+                var emailRegex = context.Get<Setting>("EmailRegex");
+                if (string.IsNullOrWhiteSpace(s))
+                    return true;
+                var regex = new Regex(emailRegex.Description);
+                return regex.IsMatch(s);
+            }
+
         }
 
         public static Email ParseEmail(this string email)
@@ -165,9 +191,9 @@ namespace System
 
             var s =
                 email.Split(new[] {"<", ">", " ", "[", "]"}, StringSplitOptions.RemoveEmptyEntries).ToList();
-            result.Address = s.LastOrDefault();
+            result.Adress = s.LastOrDefault();
             if (s.Count <= 1) return result;
-            s.Remove(result.Address);
+            s.Remove(result.Adress);
             result.Name = s.Combine(" ");
             return result;
         }

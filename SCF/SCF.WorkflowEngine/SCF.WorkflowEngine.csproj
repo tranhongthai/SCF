@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7E9E0123-2A20-462C-AA9C-1820951C8948}</ProjectGuid>
+    <ProjectGuid>{C7F4C63E-AED6-40EB-9C43-D43B80E152B7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SCF.WorkflowEngine</RootNamespace>
     <AssemblyName>SCF.WorkflowEngine</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,7 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PaymentWorkflow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{38adfc2f-c53c-4df1-85d4-bd38a5fc0319}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCF.ServiceAdaptors\SCF.ServiceAdaptors.csproj">
+      <Project>{56606dfd-9419-425d-af1b-b4630ec60f58}</Project>
+      <Name>SCF.ServiceAdaptors</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

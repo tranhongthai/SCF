@@ -1,5 +1,4 @@
-﻿using Peyton.Core.Repository;
-using System.Linq;
+﻿using System.Linq;
 
 // ReSharper disable once CheckNamespace
 
@@ -27,8 +26,6 @@ namespace System.Collections.Generic
 
         public static List<string> Trim(this IEnumerable<string> value)
         {
-            if (value == null)
-                return new List<string>();
             return value.Where(i => !string.IsNullOrWhiteSpace(i)).Distinct().ToList();
         }
 
@@ -36,7 +33,5 @@ namespace System.Collections.Generic
         {
             return value.Select(i => i.ToString()).ToList().Combine(separator);
         }
-
-        
     }
 }

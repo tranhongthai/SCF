@@ -1,6 +1,6 @@
-﻿using System;
+﻿
 using Peyton.Core.Messages;
-using SCF.ServiceAdaptors.Payment.Entitites;
+
 
 namespace SCF.ServiceAdaptors.Payment.Messages
 {
@@ -21,4 +21,6 @@ namespace SCF.ServiceAdaptors.Payment.Messages
             InvoiceId = string.Empty;
         }
     }
+
+    public class RefundResponse : ServiceResponse { }
 }

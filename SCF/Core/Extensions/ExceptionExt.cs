@@ -25,8 +25,12 @@ namespace System
                     x.Name,
                     x.Value != null ? x.Value.ToString() : string.Empty
                     ));
-            var s = string.Join("\n", fields);
+            var s = exception.Message + "\n";
+            if (fields!=null)
+                s += string.Join("More details:\n", fields);
+
             s += "\n\nInner Exception : \n";
+
             s += Details(exception.InnerException);
             return s;
         }

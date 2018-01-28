@@ -1,7 +1,6 @@
 ﻿
-using Peyton.Core.Messages;
-using SCF.ServiceAdaptors.Payment.Entitites;
 using System.Text;
+using Peyton.Core.Messages;
 
 
 namespace SCF.ServiceAdaptors.Payment.Messages
@@ -38,5 +37,10 @@ namespace SCF.ServiceAdaptors.Payment.Messages
                 builder.AppendLine("Amount 3: " + Amount3.Value + "" + Currency);
             return builder.ToString();
         }
+    }
+
+    public class PaymentResponse : ServiceResponse
+    {
+        public PaymentResponse() { }
     }
 }

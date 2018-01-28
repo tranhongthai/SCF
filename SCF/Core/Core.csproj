@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Peyton.Core</RootNamespace>
     <AssemblyName>Peyton.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -31,32 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="antlr.runtime, Version=2.7.6.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ical.Net.2.3.2\lib\net45\antlr.runtime.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="eWAY.Rapid, Version=1.5.3.0, Culture=neutral, PublicKeyToken=3ab6d5d95167133b, processorArchitecture=MSIL">
-      <HintPath>..\packages\eWAY.Rapid.1.5.3\lib\net45\eWAY.Rapid.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Ical.Net, Version=2.1.0.13691, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ical.Net.2.3.2\lib\net45\Ical.Net.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Ical.Net.Collections, Version=2.1.0.13689, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ical.Net.2.3.2\lib\net45\Ical.Net.Collections.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
@@ -64,46 +44,36 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NodaTime, Version=1.3.0.0, Culture=neutral, PublicKeyToken=4226afe0d9b296d1, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ical.Net.2.3.2\lib\net45\NodaTime.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Remoting" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
@@ -113,23 +83,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppManager.cs" />
     <Compile Include="Calendar\Appointment.cs" />
-    <Compile Include="Common\Address.cs" />
-    <Compile Include="Common\IPersonName.cs" />
-    <Compile Include="Common\Model.cs" />
-    <Compile Include="Common\Phone.cs" />
+    <Compile Include="Calendar\AppointmentType.cs" />
+    <Compile Include="Common\Milestone.cs" />
+    <Compile Include="Report\ServiceDailyReport.cs" />
+    <Compile Include="Report\ServiceHourlyReport.cs" />
+    <Compile Include="Report\ServiceMonthlyReport.cs" />
+    <Compile Include="Report\ServiceReport.cs" />
     <Compile Include="Common\ValidationModel.cs" />
     <Compile Include="Common\ValidationModelExt.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Common\Log.cs" />
+    <Compile Include="Common\QosAttribute.cs" />
     <Compile Include="Extensions\TreeNode.cs" />
     <Compile Include="Common\Email.cs" />
-    <Compile Include="DbInitializer.cs" />
+    <Compile Include="Common\Organization.cs" />
+    <Compile Include="Common\QoS.cs" />
+    <Compile Include="Common\QoSDescription.cs" />
+    <Compile Include="Common\Specification.cs" />
+    <Compile Include="Common\System.cs" />
+    <Compile Include="Messages\GenericRequest.cs" />
+    <Compile Include="Messages\GenericResponse.cs" />
+    <Compile Include="Messages\GuidRequest.cs" />
+    <Compile Include="Messages\GuidResponse.cs" />
     <Compile Include="Messages\IServiceRequest.cs" />
+    <Compile Include="Messages\IServiceResponse.cs" />
+    <Compile Include="Messages\JsonResponse.cs" />
+    <Compile Include="Messages\ServiceMessage.cs" />
     <Compile Include="Messages\ServiceRequest.cs" />
-    <Compile Include="Repository\Data.cs" />
+    <Compile Include="Messages\ServiceResponse.cs" />
+    <Compile Include="Repository\DataEntity.cs" />
+    <Compile Include="DbInitializer.cs" />
+    <Compile Include="Repository\Enums.cs" />
     <Compile Include="Repository\Entity.cs" />
+    <Compile Include="Repository\EnumEntity.cs" />
     <Compile Include="Extensions\ConvertExt.cs" />
     <Compile Include="Extensions\DateTimeExt.cs" />
     <Compile Include="Extensions\EnumExt.cs" />
@@ -137,36 +124,34 @@
     <Compile Include="Extensions\IEnumerable.cs" />
     <Compile Include="Extensions\IQueryableExt.cs" />
     <Compile Include="Extensions\ListValidationResultExt.cs" />
+    <Compile Include="Extensions\Logger.cs" />
     <Compile Include="Extensions\Range.cs" />
     <Compile Include="Extensions\SelectListExt.cs" />
     <Compile Include="Extensions\StringBuilderExt.cs" />
     <Compile Include="Extensions\StringExt.cs" />
+    <Compile Include="Repository\ISequence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\DbContext.cs" />
+    <Compile Include="Common\Application.cs" />
+    <Compile Include="Repository\Message.cs" />
     <Compile Include="Security\Group.cs" />
-    <Compile Include="Security\LogInResponse.cs" />
-    <Compile Include="Security\Models\UserModel.cs" />
+    <Compile Include="Security\Enums.cs" />
+    <Compile Include="Security\Logger.cs" />
     <Compile Include="Security\Profile.cs" />
     <Compile Include="Security\Role.cs" />
     <Compile Include="Security\RoleProfile.cs" />
     <Compile Include="Security\Token.cs" />
-    <Compile Include="Security\User.cs" />
+    <Compile Include="Security\Identity.cs" />
+    <Compile Include="Common\Version.cs" />
     <Compile Include="ThirdParty\DynamicQueryable.cs" />
     <Compile Include="ThirdParty\ObjectContextExtension.cs" />
-    <Compile Include="Web\BaseController.cs" />
     <Compile Include="Web\CacheManager.cs" />
     <Compile Include="Web\ExceptionHandler.cs" />
-    <Compile Include="Messages\JsonResponse.cs" />
-    <Compile Include="Web\Logger.cs" />
-    <Compile Include="Messages\ServiceResponse.cs" />
     <Compile Include="Web\SessionManager.cs" />
-    <Compile Include="Web\SettingManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
